@@ -2320,6 +2320,9 @@
     <name>$PROJ_DIR$\stm32f4xx_conf.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\system_stm32f4xx.c</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\system_stm32f4xx.h</name>
   </file>
 </project>

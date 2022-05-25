@@ -1,0 +1,268 @@
+###############################################################################
+#
+# IAR ELF Linker V7.50.2.10312/W32 for ARM                25/May/2022  12:53:04
+# Copyright 2007-2015 IAR Systems AB.
+#
+#    Output file  =  C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Exe\c.out
+#    Map file     =  C:\Users\123456\Desktop\DiM\DiscoLed\Debug\List\c.map
+#    Command line =  
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\main.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\misc.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\startup_stm32f40xx.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_adc.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_can.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_crc.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_cryp.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_cryp_aes.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_cryp_des.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_cryp_tdes.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_dac.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_dbgmcu.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_dcmi.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_dma.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_exti.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_flash.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_fsmc.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_gpio.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_hash.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_hash_md5.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_hash_sha1.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_i2c.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_iwdg.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_pwr.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_rcc.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_rng.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_rtc.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_sdio.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_spi.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_syscfg.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_tim.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_usart.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\stm32f4xx_wwdg.o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\system_stm32f4xx.o -o
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Exe\c.out --redirect
+#        _Printf=_PrintfFull --redirect _Scanf=_ScanfFull --map
+#        C:\Users\123456\Desktop\DiM\DiscoLed\Debug\List\c.map --config
+#        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        7.3\arm\config\linker\ST\stm32f401xC.icf" --semihosting --entry
+#        __iar_program_start --redirect __iar_sh_stdout=__iar_sh_stdout_swo
+#        --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x08000000 { ro section .intvec };
+"P1":  place in [from 0x08000000 to 0x0803ffff] { ro };
+"P2":  place in [from 0x20000000 to 0x2000ffff] { rw, block CSTACK, block HEAP };
+
+  Section   Kind        Address    Size  Object
+  -------   ----        -------    ----  ------
+"A1":                             0x188
+  .intvec   ro code  0x08000000   0x188  startup_stm32f40xx.o [1]
+                   - 0x08000188   0x188
+
+"P1":                             0x260
+  .text     ro code  0x08000188    0x6c  system_stm32f4xx.o [1]
+  .text     ro code  0x080001f4    0x22  fpinit_M.o [4]
+  .text     ro code  0x08000218    0x1a  cmain.o [5]
+  .text     ro code  0x08000232     0x4  low_level_init.o [3]
+  .text     ro code  0x08000236     0x4  main.o [1]
+  .text     ro code  0x0800023a     0x4  exit.o [3]
+  .text     ro code  0x08000240     0xa  cexit.o [5]
+  .text     ro code  0x0800024c    0x14  exit.o [6]
+  .text     ro code  0x08000260    0x10  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000270     0xc  cstartup_M.o [5]
+  .text     ro code  0x0800027c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000280     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000284     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000288     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800028c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000290     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000294     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000298     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800029c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002a0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002a4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002a8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002ac     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002b0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002b4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002b8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002bc     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002c0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002c4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002c8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002cc     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002d0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002d4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002d8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002dc     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002e0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002e4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002e8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002ec     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002f0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002f4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002f8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080002fc     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000300     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000304     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000308     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800030c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000310     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000314     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000318     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800031c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000320     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000324     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000328     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800032c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000330     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000334     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000338     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800033c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000340     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000344     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000348     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800034c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000350     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000354     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000358     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800035c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000360     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000364     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000368     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800036c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000370     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000374     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000378     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800037c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000380     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000384     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000388     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800038c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000390     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000394     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x08000398     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x0800039c     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003a0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003a4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003a8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003ac     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003b0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003b4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003b8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003bc     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003c0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003c4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003c8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003cc     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003d0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003d4     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003d8     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003dc     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003e0     0x4  startup_stm32f40xx.o [1]
+  .text     ro code  0x080003e4     0x4  startup_stm32f40xx.o [1]
+                   - 0x080003e8   0x260
+
+"P2":                            0x2000
+  CSTACK             0x20000000  0x2000  <Block>
+    CSTACK  uninit   0x20000000  0x2000  <Block tail>
+                   - 0x20002000  0x2000
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                ro code  rw data
+    ------                -------  -------
+C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj: [1]
+    main.o                      4
+    startup_stm32f40xx.o      772
+    system_stm32f4xx.o        108
+    --------------------------------------
+    Total:                    884
+
+command line: [2]
+    --------------------------------------
+    Total:
+
+dl7M_tln.a: [3]
+    exit.o                      4
+    low_level_init.o            4
+    --------------------------------------
+    Total:                      8
+
+m7M_tls.a: [4]
+    fpinit_M.o                 34
+    --------------------------------------
+    Total:                     34
+
+rt7M_tl.a: [5]
+    cexit.o                    10
+    cmain.o                    26
+    cstartup_M.o               12
+    --------------------------------------
+    Total:                     48
+
+shb_l.a: [6]
+    exit.o                     20
+    --------------------------------------
+    Total:                     20
+
+    Gaps                        6
+    Linker created                   8 192
+------------------------------------------
+    Grand Total:            1 000    8 192
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                    Address  Size  Type      Object
+-----                    -------  ----  ----      ------
+?main                 0x08000219        Code  Gb  cmain.o [5]
+CSTACK$$Base          0x20000000         --   Gb  - Linker created -
+CSTACK$$Limit         0x20002000         --   Gb  - Linker created -
+Region$$Table$$Base   0x00000000         --   Gb  - Linker created -
+Region$$Table$$Limit  0x00000000         --   Gb  - Linker created -
+SystemInit            0x08000189  0x4c  Code  Gb  system_stm32f4xx.o [1]
+__cmain               0x08000219        Code  Gb  cmain.o [5]
+__exit                0x0800024d  0x14  Code  Gb  exit.o [6]
+__iar_init_vfp        0x080001f5        Code  Gb  fpinit_M.o [4]
+__iar_program_start   0x08000271        Code  Gb  cstartup_M.o [5]
+__low_level_init      0x08000233   0x4  Code  Gb  low_level_init.o [3]
+__vector_table        0x08000000        Data  Gb  startup_stm32f40xx.o [1]
+_call_main            0x08000225        Code  Gb  cmain.o [5]
+_exit                 0x08000241        Code  Gb  cexit.o [5]
+_main                 0x0800022f        Code  Gb  cmain.o [5]
+exit                  0x0800023b   0x4  Code  Gb  exit.o [3]
+main                  0x08000237   0x4  Code  Gb  main.o [1]
+
+
+[1] = C:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj
+[2] = command line
+[3] = dl7M_tln.a
+[4] = m7M_tls.a
+[5] = rt7M_tl.a
+[6] = shb_l.a
+
+  1 000 bytes of readonly  code memory
+  8 192 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

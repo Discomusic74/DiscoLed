@@ -772,11 +772,11 @@
         </option>
         <option>
           <name>IlinkAutoLibEnable</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>IlinkAdditionalLibs</name>
-          <state>$PROJ_DIR$/</state>
+          <state></state>
         </option>
         <option>
           <name>IlinkOverrideProgramEntryLabel</name>
@@ -2139,6 +2139,9 @@
   </file>
   <file>
     <name>$PROJ_DIR$\stm32f4xx_conf.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\system_stm32f4xx.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\system_stm32f4xx.h</name>

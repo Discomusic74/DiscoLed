@@ -89,7 +89,7 @@
         </option>
         <option>
           <name>OGChipSelectEditMenu</name>
-          <state>STM32F401xC	ST STM32F401xC</state>
+          <state>STM32F401xD	ST STM32F401xD</state>
         </option>
         <option>
           <name>GenLowLevelInterface</name>
@@ -149,7 +149,7 @@
         </option>
         <option>
           <name>GFPUDeviceSlave</name>
-          <state>STM32F401xC	ST STM32F401xC</state>
+          <state>STM32F401xD	ST STM32F401xD</state>
         </option>
         <option>
           <name>FPU2</name>
@@ -186,6 +186,7 @@
         <option>
           <name>CCDefines</name>
           <state>STM32F4XX</state>
+          <state>STM32F40XX</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -250,7 +251,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -724,11 +725,11 @@
         </option>
         <option>
           <name>IlinkIcfOverride</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>$TOOLKIT_DIR$\config\linker\ST\stm32f401xC.icf</state>
+          <state>$PROJ_DIR$\DiscoLed.icf</state>
         </option>
         <option>
           <name>IlinkIcfFileSlave</name>
@@ -2127,6 +2128,9 @@
   </file>
   <file>
     <name>$PROJ_DIR$\arm_math.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\DiscoLed.icf</name>
   </file>
   <file>
     <name>$PROJ_DIR$\main.c</name>

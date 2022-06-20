@@ -22,6 +22,7 @@ C:\Users\123456\Desktop\DiM\DiscoLed\src
 -I
 C:\Users\123456\Desktop\DiM\DiscoLed\Include
 -DSTM32F4XX=1
+-DSTM32F40XX=1
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff
 -D__CHAR_MIN__=0

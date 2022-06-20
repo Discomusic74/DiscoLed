@@ -2308,6 +2308,9 @@
     <name>$PROJ_DIR$\arm_math.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\DiscoLed.icf</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\main.c</name>
   </file>
   <file>

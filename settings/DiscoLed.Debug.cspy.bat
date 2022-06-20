@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\Users\123456\Desktop\DiM\DiscoLed\settings\DiscoLed.Debug.general.xcl" --backend -f "C:\Users\123456\Desktop\DiM\DiscoLed\settings\DiscoLed.Debug.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "C:\Users\123456\Desktop\DiM\DiscoLed\settings\DiscoLed.Debug.general.xcl" --backend -f "C:\Users\123456\Desktop\DiM\DiscoLed\settings\DiscoLed.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\Users\123456\Desktop\DiM\DiscoLed\settings\DiscoLed.Debug.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\123456\Desktop\DiM\DiscoLed\settings\DiscoLed.Debug.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "C:\Users\123456\Desktop\DiM\DiscoLed\settings\DiscoLed.Debug.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\123456\Desktop\DiM\DiscoLed\settings\DiscoLed.Debug.driver.xcl" 
 
 @echo off 
 :end

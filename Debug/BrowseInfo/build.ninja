@@ -1,0 +1,379 @@
+##IAR Ninja build file
+
+
+#Rules
+rule COMPILER_XCL
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\XclFileGenerator.exe $xclcommand -f "$rspfile_name"
+  description = IAR_NEW_TOOL+++COMPILER_XCL+++$in+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\XclFileGenerator.exe" $flags
+  rspfile = $rspfile_name
+  rspfile_content = $flags
+
+rule INDEXER
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\SourceIndexer.exe $flags
+  depfile = $out.dep
+  description = IAR_NEW_TOOL+++INDEXER+++$out+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\SourceIndexer.exe" $flags
+
+rule MAKEBROWSE
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\makeBrowseData.exe $flags
+  description = IAR_NEW_TOOL+++MAKEBROWSE+++$out+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\makeBrowseData.exe" $flags
+
+rule PDBLINK
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\PbdLink.exe $flags
+  description = IAR_NEW_TOOL+++PDBLINK+++$out+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\PbdLink.exe" $flags
+
+
+
+#Build steps
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\misc.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\misc.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_adc.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_adc.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_can.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_can.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_crc.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_crc.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp_aes.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp_aes.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp_des.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp_des.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp_tdes.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp_tdes.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dac.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dac.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dbgmcu.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dbgmcu.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dcmi.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dcmi.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dma.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dma.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_exti.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_exti.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_flash.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_flash.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_fsmc.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_fsmc.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_gpio.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_gpio.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_hash.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_hash.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_hash_md5.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_hash_md5.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_hash_sha1.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_hash_sha1.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_i2c.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_i2c.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_iwdg.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_iwdg.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_pwr.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_pwr.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_rcc.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_rcc.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_rng.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_rng.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_rtc.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_rtc.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_sdio.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_sdio.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_spi.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_spi.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_syscfg.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_syscfg.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_tim.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_tim.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_usart.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_usart.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_wwdg.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_wwdg.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\src --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\main.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\main.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\123456\Desktop\DiM\DiscoLed\system_stm32f4xx.c -xcl_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.xcl -macro_file C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\system_stm32f4xx.c -D STM32F4XX -D STM32F40XX -o C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Full.h" -I C$:\Users\123456\Desktop\DiM\DiscoLed/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/inc/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/src/ -I C$:\Users\123456\Desktop\DiM\DiscoLed/Include/ -On -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\Core\Include\\" -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\CMSIS\DSP\Include\\" --predef_macros C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.tmp
+  rspfile_name = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.xcl.rsp
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\misc.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_adc.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_can.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_crc.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp_aes.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp_des.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_cryp_tdes.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dac.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dbgmcu.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dcmi.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_dma.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_exti.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_flash.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_fsmc.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_gpio.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_hash.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_hash_md5.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_hash_sha1.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_i2c.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_iwdg.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_pwr.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_rcc.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_rng.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_rtc.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_sdio.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_spi.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_syscfg.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_tim.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_usart.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_wwdg.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\main.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.pbi : INDEXER C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.xcl |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\system_stm32f4xx.c
+  flags = -out=C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.pbi -f C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.xcl
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed.pbw : MAKEBROWSE C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed.pbd
+  flags = C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed.pbd -output C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed.pbw
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part0.pbi : PDBLINK C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.pbi |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.pbi
+  flags = -M C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part0.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_adc.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_can.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_crc.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_aes.pbi
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part1.pbi : PDBLINK C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.pbi |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.pbi
+  flags = -M C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part1.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_des.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_cryp_tdes.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dac.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dbgmcu.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dcmi.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_dma.pbi
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part2.pbi : PDBLINK C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.pbi |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.pbi
+  flags = -M C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part2.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_flash.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_fsmc.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_gpio.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_md5.pbi
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part3.pbi : PDBLINK C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.pbi |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.pbi
+  flags = -M C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part3.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_hash_sha1.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_i2c.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_iwdg.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_pwr.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rcc.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rng.pbi
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part4.pbi : PDBLINK C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.pbi |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.pbi
+  flags = -M C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part4.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_rtc.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_spi.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_syscfg.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_tim.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_usart.pbi
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part5.pbi : PDBLINK C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.pbi |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.pbi
+  flags = -M C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part5.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_wwdg.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\system_stm32f4xx.pbi
+
+build C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed.pbd : PDBLINK C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part0.pbi |  $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part1.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part2.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part3.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part4.pbi $
+C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part5.pbi
+  flags = -M C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed.pbd C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part0.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part1.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part2.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part3.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part4.pbi C$:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\DiscoLed_part5.pbi
+

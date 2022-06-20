@@ -1,0 +1,18 @@
+C:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_sdio.pbi: \
+  C:\Users\123456\Desktop\DiM\DiscoLed\src\stm32f4xx_sdio.c \
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_sdio.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\stm32f4xx.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\Include\core_cm4.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\stdint.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\ycheck.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\yvals.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\DLib_Defaults.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\DLib_Config_Full.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\DLib_Product.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\Include\core_cmInstr.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\aarch32\cmsis_iar.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\aarch32\iccarm_builtin.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\Include\core_cmFunc.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\Include\core_cm4_simd.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\system_stm32f4xx.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_rcc.h

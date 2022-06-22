@@ -216,6 +216,7 @@
                     <name>CCDefines</name>
                     <state>STM32F4XX</state>
                     <state>STM32F40XX</state>
+                    <state>USE_STDPERIPH_DRIVER</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -655,7 +656,7 @@
             <data>
                 <extensions></extensions>
                 <cmdline></cmdline>
-                <hasPrio>48</hasPrio>
+                <hasPrio>1</hasPrio>
                 <buildSequence>inputOutputBased</buildSequence>
             </data>
         </settings>
@@ -2296,6 +2297,15 @@
             <name>$PROJ_DIR$\src\stm32f4xx_wwdg.c</name>
         </file>
     </group>
+    <group>
+        <name>ws2812b</name>
+        <file>
+            <name>$PROJ_DIR$\ws2812b\ws2812b.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\ws2812b\ws2812b_config.h</name>
+        </file>
+    </group>
     <file>
         <name>$PROJ_DIR$\arm_common_tables.h</name>
     </file>
@@ -2310,6 +2320,9 @@
     </file>
     <file>
         <name>$PROJ_DIR$\startup_stm32f40xx.s</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\stm32_rcc_init.c</name>
     </file>
     <file>
         <name>$PROJ_DIR$\stm32f4xx.h</name>

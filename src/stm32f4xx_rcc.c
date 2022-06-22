@@ -57,6 +57,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_rcc.h"
+//#include "stm32f4xx_conf.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Driver
   * @{
@@ -755,7 +756,7 @@ uint8_t RCC_GetSYSCLKSource(void)
   *            @arg RCC_SYSCLK_Div256: AHB clock = SYSCLK/256
   *            @arg RCC_SYSCLK_Div512: AHB clock = SYSCLK/512
   * @retval None
-  */
+  */ 
 void RCC_HCLKConfig(uint32_t RCC_SYSCLK)
 {
   uint32_t tmpreg = 0;
@@ -1127,6 +1128,7 @@ void RCC_TIMCLKPresConfig(uint32_t RCC_TIMCLKPrescaler)
   *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
+
 void RCC_AHB1PeriphClockCmd(uint32_t RCC_AHB1Periph, FunctionalState NewState)
 {
   /* Check the parameters */
@@ -1710,6 +1712,7 @@ void RCC_APB2PeriphClockLPModeCmd(uint32_t RCC_APB2Periph, FunctionalState NewSt
   *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
+
 void RCC_ITConfig(uint8_t RCC_IT, FunctionalState NewState)
 {
   /* Check the parameters */

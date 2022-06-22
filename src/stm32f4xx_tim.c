@@ -1783,6 +1783,7 @@ void TIM_OC4PolarityConfig(TIM_TypeDef* TIMx, uint16_t TIM_OCPolarity)
   *          This parameter can be: TIM_CCx_Enable or TIM_CCx_Disable. 
   * @retval None
   */
+
 void TIM_CCxCmd(TIM_TypeDef* TIMx, uint16_t TIM_Channel, uint16_t TIM_CCx)
 {
   uint16_t tmp = 0;

@@ -14,4 +14,10 @@ C:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\misc.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\aarch32\iccarm_builtin.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\Include\core_cmFunc.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\Include\core_cm4_simd.h \
-  C:\Users\123456\Desktop\DiM\DiscoLed\system_stm32f4xx.h
+  C:\Users\123456\Desktop\DiM\DiscoLed\system_stm32f4xx.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\stm32f4xx_conf.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_flash.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_gpio.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_rcc.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_syscfg.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_tim.h

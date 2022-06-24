@@ -1128,7 +1128,6 @@ void RCC_TIMCLKPresConfig(uint32_t RCC_TIMCLKPrescaler)
   *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
-
 void RCC_AHB1PeriphClockCmd(uint32_t RCC_AHB1Periph, FunctionalState NewState)
 {
   /* Check the parameters */

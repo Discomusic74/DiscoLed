@@ -3068,7 +3068,7 @@
         <name>$PROJ_DIR$\main.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\startup_stm32f40xx.s</name>
+        <name>$PROJ_DIR$\startup_stm32f429xx.s</name>
     </file>
     <file>
         <name>$PROJ_DIR$\stm32_rcc_init.c</name>

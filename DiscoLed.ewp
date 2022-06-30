@@ -74,7 +74,7 @@
                 </option>
                 <option>
                     <name>OGChipSelectEditMenu</name>
-                    <state>STM32F401CD	ST STM32F401CD</state>
+                    <state>STM32F401CC	ST STM32F401CC</state>
                 </option>
                 <option>
                     <name>GenLowLevelInterface</name>
@@ -120,7 +120,7 @@
                 </option>
                 <option>
                     <name>GFPUDeviceSlave</name>
-                    <state>STM32F401CD	ST STM32F401CD</state>
+                    <state>STM32F401CC	ST STM32F401CC</state>
                 </option>
                 <option>
                     <name>FPU2</name>
@@ -215,7 +215,7 @@
                 <option>
                     <name>CCDefines</name>
                     <state>STM32F4XX</state>
-                    <state>STM32F40XX</state>
+                    <state>STM32F427X</state>
                     <state>USE_STDPERIPH_DRIVER</state>
                 </option>
                 <option>
@@ -749,7 +749,7 @@
                 </option>
                 <option>
                     <name>IlinkIcfFile</name>
-                    <state>$TOOLKIT_DIR$\config\linker\ST\stm32f401xD.icf</state>
+                    <state>$TOOLKIT_DIR$\config\linker\ST\stm32f429xI.icf</state>
                 </option>
                 <option>
                     <name>IlinkIcfFileSlave</name>
@@ -2319,7 +2319,7 @@
         <name>$PROJ_DIR$\main.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\startup_stm32f40xx.s</name>
+        <name>$PROJ_DIR$\startup_stm32f429xx.s</name>
     </file>
     <file>
         <name>$PROJ_DIR$\stm32_rcc_init.c</name>

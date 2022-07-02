@@ -1,73 +1,56 @@
-/******************************************************************************
-File:   ws2812b.h
-Ver     1.0
-Date:   July 10, 2018
-Autor:  Sivokon Dmitriy aka DiMoon Electronics
-
-*******************************************************************************
-BSD 2-Clause License
-
-Copyright (c) 2018, Sivokon Dmitriy
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-******************************************************************************/
-
 
 #ifndef __WS2812B_H__
 #define __WS2812B_H__
 
 #include <stdint.h>
 
-//Количество светодиодов в ленте
-#define WS2812B_NUM_LEDS        144
+#define ASIZE  10000 // Настройка для  задержки копирования массива = 250 мкс
+volatile uint8_t buf1[ASIZE];
+volatile uint8_t buf2[ASIZE];
 
-//Инициализация интерфейса ws2812b
-void ws2812b_init(void);
+uint32_t HSV_to_RGB(int hue, int sat, int val);
+void Convert_RGB_to_DMA_buf(void);
+uint32_t HSV_to_RGB_double(uint32_t hue, uint32_t saturation, uint32_t value);
+void Delay_ms(uint32_t n);
+void Convert_RGB_to_DMA_buf_Mirror(void);
+void Fill_color(uint32_t color);
+void Moving_leds(uint32_t n, uint32_t dir, uint32_t del);
 
-//Очистить буфер светодиодной ленты.
-//Устанавливает всем светодиодам значения
-//R=0, G=0, B=0
-void ws2812b_buff_claer(void);
+volatile static uint8_t tempeffone = 0;
 
-//Установить компоненты RGB светодиода номер pixn
-//pixn=0..WS2812B_NUM_LEDS-1
-//r=0..255, g=0..255, b=0..255
-//Возвращаемые значения
-// 0 - выполнено успешно
-// 1 - неверное значение pixn
-int ws2812b_set(int pixn, uint8_t r, uint8_t g, uint8_t b);
+const uint8_t BrightnessTable[64] = {
+  0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 2 , 2 , 3 , 4 , 5 , 6 , 7 , 9,
+  10 , 12 , 13 , 15 , 17 , 19 , 21 , 24 , 26 , 29 , 32 , 35 , 38 , 41 , 44 , 48,
+  52 , 55 , 59 , 64 , 68 , 72 , 77 , 82 , 87 , 92 , 98 , 103 , 109 , 115 , 121 , 127,
+  134 , 141 , 147 , 154 , 162 , 169 , 177 , 185 , 193 , 201 , 209 , 218 , 227 , 236 , 245 , 255,
+};
 
-//Загрузить подготовленный буфрер 
-//в светодиодную ленту.
-//Возврашает 1 если предыдущая операция 
-//обмена данными еще не завершена
-int ws2812b_send(void);
+const uint16_t BrightnessTable2[64] = {
+0 , 0 , 1 , 2 , 3 , 4 , 5 , 7 , 9 , 10 , 12 , 14 , 16 , 19 , 21 , 24,
+26 , 29 , 32 , 35 , 38 , 41 , 44 , 48 , 51 , 55 , 58 , 62 , 66 , 70 , 74 , 78,
+82 , 87 , 91 , 95 , 100 , 105 , 109 , 114 , 119 , 124 , 129 , 134 , 140 , 145 , 150 , 156,
+161 , 167 , 173 , 179 , 185 , 191 , 197 , 203 , 209 , 215 , 222 , 228 , 235 , 241 , 248 , 255
+}; 
 
-//Возвращает 1 если предыдущая операция 
-//обмена данными с светодиодной лентой
-//завершена успешно
-int ws2812b_is_ready(void);
+const uint8_t dim_curve[256] = {
+  0, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3,
+  3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+  4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6,
+  6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8,
+  8, 8, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 11, 11, 11,
+  11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15,
+  15, 15, 16, 16, 16, 16, 17, 17, 17, 18, 18, 18, 19, 19, 19, 20,
+  20, 20, 21, 21, 22, 22, 22, 23, 23, 24, 24, 25, 25, 25, 26, 26,
+  27, 27, 28, 28, 29, 29, 30, 30, 31, 32, 32, 33, 33, 34, 35, 35,
+  36, 36, 37, 38, 38, 39, 40, 40, 41, 42, 43, 43, 44, 45, 46, 47,
+  48, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,
+  63, 64, 65, 66, 68, 69, 70, 71, 73, 74, 75, 76, 78, 79, 81, 82,
+  83, 85, 86, 88, 90, 91, 93, 94, 96, 98, 99, 101, 103, 105, 107, 109,
+  110, 112, 114, 116, 118, 121, 123, 125, 127, 129, 132, 134, 136, 139, 141, 144,
+  146, 149, 151, 154, 157, 159, 162, 165, 168, 171, 174, 177, 180, 183, 186, 190,
+  193, 196, 200, 203, 207, 211, 214, 218, 222, 226, 230, 234, 238, 242, 248, 255,
+};
+
 
 
 #endif

@@ -38,7 +38,7 @@
         <stlinkResetStrategy>2</stlinkResetStrategy>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>151883150</Checksum>
+        <Checksum>2884031550</Checksum>
     </DebugChecksum>
     <CodeCoverage>
         <Enabled>_ 0</Enabled>
@@ -87,6 +87,12 @@
     <ArmDriver>
         <EnableCache>0</EnableCache>
     </ArmDriver>
+    <array_types>
+        <Fmt0>uint32_t[144]	3	0</Fmt0>
+        <Fmt1>uint32_t[8]	4	0</Fmt1>
+        <Fmt2>uint8_t (volatile)[144]	3	0</Fmt2>
+        <Fmt3>uint8_t[144]	3	0</Fmt3>
+    </array_types>
     <watch_formats>
         <Fmt0>{W}1:ab	3	0</Fmt0>
         <Fmt1>{W}1:hclk	3	0</Fmt1>

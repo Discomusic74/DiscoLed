@@ -341,6 +341,7 @@
                     <state>$PROJ_DIR$/inc/</state>
                     <state>$PROJ_DIR$/src/</state>
                     <state>$PROJ_DIR$/Include/</state>
+                    <state>$PROJ_DIR$/ws2812b/</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -749,7 +750,7 @@
                 </option>
                 <option>
                     <name>IlinkIcfFile</name>
-                    <state>$TOOLKIT_DIR$\config\linker\ST\stm32f429xI.icf</state>
+                    <state>$TOOLKIT_DIR$\config\linker\ST\stm32f401xC.icf</state>
                 </option>
                 <option>
                     <name>IlinkIcfFileSlave</name>
@@ -2300,6 +2301,9 @@
     <group>
         <name>ws2812b</name>
         <file>
+            <name>$PROJ_DIR$\ws2812b\ws2812b.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\ws2812b\ws2812b.h</name>
         </file>
         <file>
@@ -2322,7 +2326,10 @@
         <name>$PROJ_DIR$\startup_stm32f429xx.s</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\stm32_rcc_init.c</name>
+        <name>$PROJ_DIR$\stm32_init.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\stm32_init.h</name>
     </file>
     <file>
         <name>$PROJ_DIR$\stm32f4xx.h</name>
@@ -2335,5 +2342,8 @@
     </file>
     <file>
         <name>$PROJ_DIR$\system_stm32f4xx.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\vars.h</name>
     </file>
 </project>

@@ -3049,6 +3049,9 @@
     <group>
         <name>ws2812b</name>
         <file>
+            <name>$PROJ_DIR$\ws2812b\ws2812b.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\ws2812b\ws2812b.h</name>
         </file>
         <file>
@@ -3071,7 +3074,10 @@
         <name>$PROJ_DIR$\startup_stm32f429xx.s</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\stm32_rcc_init.c</name>
+        <name>$PROJ_DIR$\stm32_init.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\stm32_init.h</name>
     </file>
     <file>
         <name>$PROJ_DIR$\stm32f4xx.h</name>
@@ -3084,5 +3090,8 @@
     </file>
     <file>
         <name>$PROJ_DIR$\system_stm32f4xx.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\vars.h</name>
     </file>
 </project>

@@ -1576,7 +1576,7 @@ uint16_t ADC_GetInjectedConversionValue(ADC_TypeDef* ADCx, uint8_t ADC_InjectedC
   * @param  NewState: new state of the specified ADC interrupts.
   *          This parameter can be: ENABLE or DISABLE.
   * @retval None
-  */
+  */  
 void ADC_ITConfig(ADC_TypeDef* ADCx, uint16_t ADC_IT, FunctionalState NewState)  
 {
   uint32_t itmask = 0;

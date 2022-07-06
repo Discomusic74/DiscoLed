@@ -77,7 +77,6 @@ typedef struct
                                                regular channel group.
                                                This parameter must range from 1 to 16. */
 }ADC_InitTypeDef;
-  
 /** 
   * @brief   ADC Common Init structure definition  
   */ 

@@ -16,6 +16,7 @@ C:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\src\stm32f4xx_exti.pbi: \
   C:\Users\123456\Desktop\DiM\DiscoLed\Include\core_cm4_simd.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\system_stm32f4xx.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\stm32f4xx_conf.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_adc.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_dma.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_flash.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_gpio.h \

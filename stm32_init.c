@@ -1,5 +1,14 @@
 #include "stm32_init.h"
 
+void SysTick_Init(void)
+{
+  SysTick->LOAD &= ~SysTick_LOAD_RELOAD_Msk; //сбрасываем возможные старые значения интервала счета в 0
+  SysTick->LOAD = SYSCLOCK/1000 - 1; //правильнее без скобки, досадная очепятка. Правильно так.
+  SysTick->VAL &= ~SysTick_VAL_CURRENT_Msk; //сбрасываем текущие значения счетчика в 0
+  SysTick->CTRL |= SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk;//запуск счетчика
+  //выбрали частоту синхронизации - от тактирования процессора(АНВ),разрешили прерывания и включили счетчик.
+}
+
 void STM32_init_rcc(){
 
 	RCC_DeInit();
@@ -23,7 +32,9 @@ void STM32_init_rcc(){
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);  // Timer2
-  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);  // DMA
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);  // DMA 
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE); // ADC1
  
 }
 
@@ -46,6 +57,17 @@ void STM32_init_gpio(){
   gp2.GPIO_PuPd = GPIO_PuPd_UP;
   GPIO_Init(GPIOA,&gp2);
   GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_TIM2);
+
+  GPIO_InitTypeDef gp3;     // PA7 for ADC1
+  gp3.GPIO_Pin = GPIO_Pin_7;
+  gp3.GPIO_Mode = GPIO_Mode_AN;
+  gp3.GPIO_Speed = GPIO_Speed_100MHz;
+  //gp3.GPIO_OType = GPIO_OType_PP;
+  //gp3.GPIO_PuPd = GPIO_PuPd_NOPULL;
+  GPIO_Init(GPIOA,&gp3);
+  //GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_TIM2);
+
+
 }
 
 void STM32_init_timer(){
@@ -74,7 +96,7 @@ void STM32_init_timer(){
 	TIM_Cmd(TIM2,ENABLE);
 }
 
-void STM32_init_dma(){
+void STM32_init_dma_timer(){
 
 	DMA_DeInit(DMA1_Stream7);
   while (DMA_GetCmdStatus(DMA1_Stream7));
@@ -83,7 +105,7 @@ void STM32_init_dma(){
   dm.DMA_PeripheralBaseAddr = (uint32_t)&(TIM2->DMAR);
   dm.DMA_Memory0BaseAddr = (uint32_t)&DMA_buf;
   dm.DMA_DIR = DMA_DIR_MemoryToPeripheral;
-  dm.DMA_BufferSize = (LEDS_NUM + 4) * COLRS * 8;
+  dm.DMA_BufferSize = (LEDS_NUM + 2) * COLRS * 8;
   dm.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   dm.DMA_MemoryInc = DMA_MemoryInc_Enable;
   dm.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
@@ -105,4 +127,70 @@ void STM32_init_dma(){
   //NVIC_EnableIRQ(DMA1_Stream7_IRQn);
    // __enable_irq();
 
+}
+
+void STM32_init_adc(){
+
+    ADC_DeInit();
+    ADC_InitTypeDef adc;
+    adc.ADC_Resolution = ADC_Resolution_12b;
+    adc.ADC_ScanConvMode = DISABLE;
+    adc.ADC_ContinuousConvMode = ENABLE;
+    adc.ADC_DataAlign = ADC_DataAlign_Right;
+    adc.ADC_NbrOfConversion = ADC_Channel_7;
+    ADC_Init(ADC1, &adc);
+
+    ADC_CommonInitTypeDef adc1;
+    adc1.ADC_Mode = ADC_Mode_Independent;
+    adc1.ADC_Prescaler = ADC_Prescaler_Div4;
+    adc1.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
+    adc1.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_20Cycles;
+    ADC_CommonInit(&adc1);
+
+    //ADC_ContinuousModeCmd(ADC1, ENABLE);
+    //ADC_DiscModeCmd(ADC1, ENABLE);
+
+    ADC_DMARequestAfterLastTransferCmd(ADC1, ENABLE);
+    ADC_DMACmd(ADC1, ENABLE);
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 1, ADC_SampleTime_28Cycles);
+    ADC_ITConfig(ADC1, ADC_IT_OVR, ENABLE);
+    ADC_EOCOnEachRegularChannelCmd(ADC1, ENABLE);
+
+    ADC_AnalogWatchdogCmd(ADC1, DISABLE);
+
+    ADC_Cmd(ADC1, ENABLE);
+
+    ADC_SoftwareStartConv(ADC1);
+
+    NVIC_EnableIRQ(ADC_IRQn);
+}
+
+void STM32_init_dma_adc(){
+
+    DMA_DeInit(DMA2_Stream0);
+  while (DMA_GetCmdStatus(DMA2_Stream0));
+  DMA_InitTypeDef dm;
+  dm.DMA_Channel = DMA_Channel_0;
+  dm.DMA_PeripheralBaseAddr = (uint32_t)&(ADC1->DR);
+  dm.DMA_Memory0BaseAddr = (uint32_t)&ADC_buf;
+  dm.DMA_DIR = DMA_DIR_PeripheralToMemory;
+  dm.DMA_BufferSize = 1024;
+  dm.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+  dm.DMA_MemoryInc = DMA_MemoryInc_Enable;
+  dm.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
+  dm.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
+  dm.DMA_Mode = DMA_Mode_Circular;
+  //dm.DMA_Mode = DMA_Mode_Normal;
+  dm.DMA_Priority = DMA_Priority_High;
+  dm.DMA_FIFOMode = DMA_FIFOMode_Enable;
+  dm.DMA_FIFOThreshold = DMA_FIFOThreshold_3QuartersFull;
+  dm.DMA_MemoryBurst = DMA_MemoryBurst_Single;
+  dm.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
+    
+      
+  DMA_Init(DMA2_Stream0, &dm);
+  DMA_ITConfig(DMA2_Stream0, DMA_IT_TC, ENABLE);
+  DMA_Cmd(DMA2_Stream0, ENABLE);
+    
+  NVIC_EnableIRQ(DMA2_Stream0_IRQn);
 }

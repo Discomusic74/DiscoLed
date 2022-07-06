@@ -19,6 +19,8 @@ C:\Users\123456\Desktop\DiM\DiscoLed/src/
 -I
 C:\Users\123456\Desktop\DiM\DiscoLed/Include/
 -I
+C:\Users\123456\Desktop\DiM\DiscoLed/ws2812b/
+-I
 C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CMSIS\Core\Include\
 -I
 C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CMSIS\DSP\Include\
@@ -36,6 +38,8 @@ C:\Users\123456\Desktop\DiM\DiscoLed\inc
 C:\Users\123456\Desktop\DiM\DiscoLed\src
 -I
 C:\Users\123456\Desktop\DiM\DiscoLed\Include
+-I
+C:\Users\123456\Desktop\DiM\DiscoLed\ws2812b
 -I
 C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CMSIS\Core\Include
 -I

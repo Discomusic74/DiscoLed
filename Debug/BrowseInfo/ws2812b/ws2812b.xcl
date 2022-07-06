@@ -19,6 +19,8 @@ C:\Users\123456\Desktop\DiM\DiscoLed/src/
 -I
 C:\Users\123456\Desktop\DiM\DiscoLed/Include/
 -I
+C:\Users\123456\Desktop\DiM\DiscoLed/ws2812b/
+-I
 C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CMSIS\Core\Include\
 -I
 C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CMSIS\DSP\Include\
@@ -36,6 +38,8 @@ C:\Users\123456\Desktop\DiM\DiscoLed\inc
 C:\Users\123456\Desktop\DiM\DiscoLed\src
 -I
 C:\Users\123456\Desktop\DiM\DiscoLed\Include
+-I
+C:\Users\123456\Desktop\DiM\DiscoLed\ws2812b
 -I
 C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CMSIS\Core\Include
 -I
@@ -340,7 +344,7 @@ C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CMSIS\DSP\Include
 -D__EDG_FLOAT128_ENABLING_POSSIBLE=0
 -D__EDG_INT128_EXTENSIONS_ALLOWED=0
 -DSTM32F4XX=1
--DSTM32F40XX=1
+-DSTM32F427X=1
 -DUSE_STDPERIPH_DRIVER=1
 -D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\inc\c\DLib_Config_Full.h"
 -D_DLIB_CONFIG_FILE_STRING="C:\\Program Files\\IAR Systems\\Embedded Workbench 9.0\\arm\\inc\\c\\DLib_Config_Full.h"

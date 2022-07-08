@@ -346,6 +346,9 @@ C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CMSIS\DSP\Include
 -DSTM32F4XX=1
 -DSTM32F427X=1
 -DUSE_STDPERIPH_DRIVER=1
+-DARM_MATH_CM4=1
+-D__TARGET_FPU_VFP=1
+-DARM_CC=1
 -D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\inc\c\DLib_Config_Full.h"
 -D_DLIB_CONFIG_FILE_STRING="C:\\Program Files\\IAR Systems\\Embedded Workbench 9.0\\arm\\inc\\c\\DLib_Config_Full.h"
 -D__VERSION__="IAR ANSI C/C++ Compiler V9.10.2.313/W64 for ARM"

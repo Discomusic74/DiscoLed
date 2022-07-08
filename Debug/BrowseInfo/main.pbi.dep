@@ -32,4 +32,5 @@ C:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\main.pbi: \
   C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_rcc.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_syscfg.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_tim.h \
-  C:\Users\123456\Desktop\DiM\DiscoLed\inc\misc.h
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\misc.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\arm_math.h

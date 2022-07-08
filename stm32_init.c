@@ -135,7 +135,7 @@ void STM32_init_adc(){
     ADC_InitTypeDef adc;
     adc.ADC_Resolution = ADC_Resolution_12b;
     adc.ADC_ScanConvMode = DISABLE;
-    adc.ADC_ContinuousConvMode = ENABLE;
+    adc.ADC_ContinuousConvMode = DISABLE;
     adc.ADC_DataAlign = ADC_DataAlign_Right;
     adc.ADC_NbrOfConversion = ADC_Channel_7;
     ADC_Init(ADC1, &adc);
@@ -162,7 +162,7 @@ void STM32_init_adc(){
 
     ADC_SoftwareStartConv(ADC1);
 
-    NVIC_EnableIRQ(ADC_IRQn);
+    //NVIC_EnableIRQ(ADC_IRQn);
 }
 
 void STM32_init_dma_adc(){
@@ -174,7 +174,7 @@ void STM32_init_dma_adc(){
   dm.DMA_PeripheralBaseAddr = (uint32_t)&(ADC1->DR);
   dm.DMA_Memory0BaseAddr = (uint32_t)&ADC_buf;
   dm.DMA_DIR = DMA_DIR_PeripheralToMemory;
-  dm.DMA_BufferSize = 1024;
+  dm.DMA_BufferSize = LENGTH_SAMPLES;
   dm.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   dm.DMA_MemoryInc = DMA_MemoryInc_Enable;
   dm.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
@@ -183,7 +183,7 @@ void STM32_init_dma_adc(){
   //dm.DMA_Mode = DMA_Mode_Normal;
   dm.DMA_Priority = DMA_Priority_High;
   dm.DMA_FIFOMode = DMA_FIFOMode_Enable;
-  dm.DMA_FIFOThreshold = DMA_FIFOThreshold_3QuartersFull;
+  dm.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
   dm.DMA_MemoryBurst = DMA_MemoryBurst_Single;
   dm.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
     

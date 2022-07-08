@@ -2840,6 +2840,12 @@
         </settings>
     </configuration>
     <group>
+        <name>DSP_Lib</name>
+        <file>
+            <name>$PROJ_DIR$\DSP_Lib\arm_fft_bin_data.c</name>
+        </file>
+    </group>
+    <group>
         <name>inc</name>
         <file>
             <name>$PROJ_DIR$\inc\misc.h</name>

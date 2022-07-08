@@ -24,4 +24,10 @@ C:\Users\123456\Desktop\DiM\DiscoLed\Debug\BrowseInfo\stm32_init.pbi: \
   C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_rcc.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_syscfg.h \
   C:\Users\123456\Desktop\DiM\DiscoLed\inc\stm32f4xx_tim.h \
-  C:\Users\123456\Desktop\DiM\DiscoLed\inc\misc.h
+  C:\Users\123456\Desktop\DiM\DiscoLed\inc\misc.h \
+  C:\Users\123456\Desktop\DiM\DiscoLed\arm_math.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\string.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\ysizet.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\DLib_Product_string.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\math.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\DLib_float_setup.h

@@ -32,6 +32,7 @@ void STM32_init_rcc(){
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);  // Timer2
+   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);  // Timer3 RCC_APB1Periph_TIM3
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);  // DMA 
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE); // ADC1
@@ -70,9 +71,25 @@ void STM32_init_gpio(){
 
 }
 
+void ISR_init_timer(){
+
+  TIM_DeInit(TIM3);
+  TIM_TimeBaseInitTypeDef tim3_base;
+  tim3_base.TIM_Prescaler = 0;
+  tim3_base.TIM_CounterMode = TIM_CounterMode_Up;
+  tim3_base.TIM_Period = 21000;
+  tim3_base.TIM_ClockDivision = TIM_CKD_DIV4;
+  TIM_TimeBaseInit(TIM3,&tim3_base);
+    
+  TIM_ARRPreloadConfig(TIM3, ENABLE);
+  TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
+  NVIC_EnableIRQ(TIM3_IRQn);
+  TIM_Cmd(TIM3,ENABLE);
+
+}
 void STM32_init_timer(){
 
-	TIM_DeInit(TIM2);
+  TIM_DeInit(TIM2);
   TIM_TimeBaseInitTypeDef tim2_base;
   tim2_base.TIM_Prescaler = 0;
   tim2_base.TIM_CounterMode = TIM_CounterMode_Up;
@@ -88,17 +105,14 @@ void STM32_init_timer(){
   TIM_OC4Init(TIM2, &tim2);
   TIM_ARRPreloadConfig(TIM2, ENABLE);
   TIM_DMAConfig(TIM2, TIM_DMABase_CCR4, TIM_DMABurstLength_1Transfer);
-
-  
   TIM_OC4PreloadConfig(TIM2, TIM_OCPreload_Enable);
-
   TIM_DMACmd(TIM2, TIM_DMA_Update, ENABLE);        // InterrupsTIM_DMA_Update
-	TIM_Cmd(TIM2,ENABLE);
+  TIM_Cmd(TIM2,ENABLE);
 }
 
 void STM32_init_dma_timer(){
-
-	DMA_DeInit(DMA1_Stream7);
+  
+  DMA_DeInit(DMA1_Stream7);
   while (DMA_GetCmdStatus(DMA1_Stream7));
   DMA_InitTypeDef dm;
   dm.DMA_Channel = DMA_Channel_3;
@@ -152,7 +166,7 @@ void STM32_init_adc(){
 
     ADC_DMARequestAfterLastTransferCmd(ADC1, ENABLE);
     ADC_DMACmd(ADC1, ENABLE);
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 1, ADC_SampleTime_28Cycles);
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 1, ADC_SampleTime_480Cycles);
     ADC_ITConfig(ADC1, ADC_IT_OVR, ENABLE);
     ADC_EOCOnEachRegularChannelCmd(ADC1, ENABLE);
 

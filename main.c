@@ -5,8 +5,14 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-//#include "arm_math.h" 
+//#include "ws2812b.h" 
 #include "stm32_init.h"
+
+#define CHANNELS 8
+#define LEDPERCANEL 18
+
+extern const uint8_t BrightnessTable[64];
+extern const uint16_t BrightnessTable2[64];
 
 uint32_t DMA_buf[LEDS_NUM+2][COLRS][8];
 q31_t ADC_buf[LENGTH_SAMPLES];
@@ -14,11 +20,16 @@ float32_t ADC_arr[LENGTH_SAMPLES];
 float32_t ADC_fft[LENGTH_SAMPLES*2];
 float32_t Spectr_fft[LENGTH_SAMPLES];
 q31_t Spectr_fft_q31[LENGTH_SAMPLES];
+uint32_t capture[8]; 
 uint32_t LEDS_buf[LEDS_NUM]; 
 uint8_t val_sin[LEDS_NUM];
 uint8_t sat_sin[LEDS_NUM];
 uint8_t ADC_flag_fft = 0;
 static uint16_t pos= 0;
+volatile uint8_t peak[CHANNELS]; // массив для значений текущей яркости по каналам
+
+volatile static uint16_t fade = 0; // счетчик для затухания
+volatile static uint16_t fadespeed = 30; // скорость затухания огней по умолчанию = fadeinitial * faderate
 
 extern float32_t testInput_f32_10khz[2048]; 
 
@@ -35,6 +46,7 @@ static void DoFFT();
   STM32_init_gpio();
   STM32_init_adc();
   STM32_init_dma_adc();
+  ISR_init_timer();
     
   SysTick_Init();
   NVIC_EnableIRQ(SysTick_IRQn);
@@ -52,6 +64,7 @@ static void DoFFT();
 
    LEDstrip_init();
    Convert_RGB_to_DMA_buf();
+     uint16_t spectr;
      
    //DoFFT();
    
@@ -60,7 +73,68 @@ static void DoFFT();
     if (ADC_flag_fft)
    {
      DoFFT();
-     ADC_flag_fft = 0;
+       
+     //чистка массива перед повторным использованием
+     memset (capture, 0, sizeof(capture));   
+     
+     //==================================================+
+     // Разложение спектра на каналы						|
+     //==================================================+		
+    
+      for (uint16_t n = 2; n < LENGTH_SAMPLES / 2; n++) {
+              spectr = Spectr_fft_q31[n];
+              if (spectr <= 3000) spectr = 0;
+              switch (n)
+                      {	
+                      case 2 ... 20: capture[0] += spectr;// низкие частоты
+                      break;
+                      case 21 ... 41:capture[1] += spectr;
+                      break;
+                      case 42 ... 70: capture[2] += spectr;
+                      break;
+                      case 81 ... 150: capture[3] += spectr;
+                      break;
+                      case 151 ... 299: capture[4] += spectr;
+                      break;
+                      case 300 ... 339: capture[5] += spectr;
+                      break;
+                      case 400 ... 448: capture[6] += spectr;
+                      break;
+                      case 449 ... 512: capture[7] += spectr;	// высокие частоты
+                      break;
+      
+                      }
+       }
+         
+       for (uint8_t y = 0; y < CHANNELS; y++) {
+         capture[y] = capture[y] / 9375 ;
+         if (capture[y] >= 64) capture[y] = 64;
+         if(capture[y] >= peak[y]) peak[y] = capture[y];        // установка нового пика и счетчика паузы затухания	
+       }
+    
+      //============================================================+
+      // Заполнение массива цветом и яркостью для каждого	из ws2812b|
+      //============================================================+		
+              
+      uint8_t currentled = 0;
+   uint8_t currentledp = LEDPERCANEL;
+      
+    for(uint8_t y = 0; y < CHANNELS; y++) { // для каждого канала
+          for(uint8_t x = 0; x < currentledp; x++) { // для каждого светодиода
+            
+            
+           uint8_t hue = 150;
+           uint8_t sat = 255;
+           
+           LEDS_buf[currentled] = HSV_to_RGB(hue, sat, BrightnessTable2[peak[y]]);
+           currentled++;
+          if (currentled > LEDS_NUM) currentled = 0;
+          }
+         
+    }
+                
+     Convert_RGB_to_DMA_buf();                             
+     ADC_flag_fft = 0; 
     } else 
    {
      ADC_SoftwareStartConv(ADC1);
@@ -77,6 +151,7 @@ static void DoFFT();
       //printf ("%d\n",hclk);
      // ADC_SoftwareStartConv(ADC1);
      
+     //Convert_RGB_to_DMA_buf();
   }
 
   return 0;
@@ -104,15 +179,14 @@ void SysTick_Handler(void)
   if(SysTick_CNT > 0)  SysTick_CNT--;
 }
 
-void ADC_IRQHandler(void)
+void TIM3_IRQHandler(void) // Частота прерывания 1 мс
 {
-  //ADC_ITConfig(ADC1, ADC_IT_EOC, DISABLE);
-  ADC_ClearFlag(ADC1, ADC_FLAG_EOC);
-  ADC_ClearFlag(ADC1, ADC_FLAG_OVR);
-    ADC1->DR=0;
-  //ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
-      
-  //ADC_SoftwareStartConv(ADC1);
+  if( fade >= fadespeed) { // счетчик циклов, при сробатывании обнуляется. чем он меньше, тем чаще будет происходить "затухание" при отсутствии нового "пика"
+          for(uint8_t y = 0; y < CHANNELS; y++) if(peak[y]) peak[y]--;
+          fade = 0;
+  }
+  fade++; // счетчик для затухания
+  TIM_ClearFlag(TIM3, TIM_FLAG_Update);
 }
 
 void DMA2_Stream0_IRQHandler(void)
@@ -128,7 +202,7 @@ void DMA2_Stream0_IRQHandler(void)
     pos += 2;
   }
     pos =0;
-  memset (ADC_buf, 0, sizeof(ADC_buf));
+  //memset (ADC_buf, 0, sizeof(ADC_buf));
   ADC_flag_fft = 1;
   DMA_ClearITPendingBit(DMA2_Stream0, DMA_IT_TCIF0);  // Сброс флага прерывания
 
@@ -144,12 +218,13 @@ void delay_mS(uint32_t mS)
 
 static void DoFFT()
 {
+  uint16_t spectr;
   uint32_t ifftFlag = 0; 
   uint32_t doBitReverse = 1; 
   uint32_t refIndex = 213, testIndex = 0; 
     arm_status status; 
       
-  float32_t maxValue; 
+  //float32_t maxValue; 
         
       //arm_rfft_instance_f32 S; 
       arm_cfft_radix4_instance_f32 S;
@@ -162,15 +237,10 @@ static void DoFFT()
           arm_cmplx_mag_f32(ADC_fft, Spectr_fft, LENGTH_SAMPLES);       // Преобразуем значение FFT в комлексный формат float32
       //arm_cmplx_mag_f32(testInput_f32_10khz, Spectr_fft, LENGTH_SAMPLES);
         arm_float_to_q31(Spectr_fft, Spectr_fft_q31, LENGTH_SAMPLES);
-          
-        /* Calculates maxValue and returns corresponding BIN value */ 
-	arm_max_f32(Spectr_fft, LENGTH_SAMPLES, &maxValue, &testIndex); 
-	  
-	if(testIndex ==  refIndex) 
-	{ 
-		status = ARM_MATH_TEST_FAILURE; 
-	} 
+            
     }
+
+              
       //memset (ADC_arr, 0, sizeof(ADC_arr));
     //status = arm_cfft_radix4_init_f32(&S, fftSize,  ifftFlag, doBitReverse); 
 	 

@@ -27,5 +27,6 @@ void STM32_init_gpio();
 void STM32_init_rcc();
 void STM32_init_adc();
 void STM32_init_dma_adc();
+void ISR_init_timer();
 
 #endif

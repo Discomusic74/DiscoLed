@@ -156,7 +156,7 @@ void STM32_init_adc(){
 
     ADC_CommonInitTypeDef adc1;
     adc1.ADC_Mode = ADC_Mode_Independent;
-    adc1.ADC_Prescaler = ADC_Prescaler_Div4;
+    adc1.ADC_Prescaler = ADC_Prescaler_Div6;    // 84 Мгц / 6 = 14 МГц
     adc1.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
     adc1.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_20Cycles;
     ADC_CommonInit(&adc1);
@@ -166,8 +166,9 @@ void STM32_init_adc(){
 
     ADC_DMARequestAfterLastTransferCmd(ADC1, ENABLE);
     ADC_DMACmd(ADC1, ENABLE);
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 1, ADC_SampleTime_480Cycles);
-    ADC_ITConfig(ADC1, ADC_IT_OVR, ENABLE);
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 1, ADC_SampleTime_480Cycles); // 14 МГц / 480 = 29166 Гц Частота дискретизации
+                                                                                // По теореме Котельникова граничная частота отображения 29166 / 2 = 14583 Гц
+    ADC_ITConfig(ADC1, ADC_IT_OVR, ENABLE);                     
     ADC_EOCOnEachRegularChannelCmd(ADC1, ENABLE);
 
     ADC_AnalogWatchdogCmd(ADC1, DISABLE);

@@ -3068,6 +3068,9 @@
         <name>$PROJ_DIR$\arm_common_tables.h</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\arm_fft_win.c</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\arm_math.h</name>
     </file>
     <file>

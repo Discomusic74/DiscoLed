@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-//#include "ws2812b.h" 
 #include "stm32_init.h"
 
 #define CHANNELS 8
@@ -13,6 +12,14 @@
 
 extern const uint8_t BrightnessTable[64];
 extern const uint16_t BrightnessTable2[64];
+extern float32_t fCoeff[LENGTH_SAMPLES];
+extern void arm_fft_window(uint8_t wind);
+
+enum {
+  SOUNDSPECTR = 0,
+  COLORMUSIC = 1,
+  VUMETR = 2
+} mode;
 
 uint32_t DMA_buf[LEDS_NUM+2][COLRS][8];
 q31_t ADC_buf[LENGTH_SAMPLES];
@@ -27,18 +34,34 @@ uint8_t sat_sin[LEDS_NUM];
 uint8_t ADC_flag_fft = 0;
 static uint16_t pos= 0;
 volatile uint8_t peak[CHANNELS]; // массив для значений текущей яркости по каналам
-
+volatile uint8_t vpeak[LEDS_NUM]; // массив для значений текущей яркости по каналам
+volatile uint16_t min_value ; // минимальное пороговое значение каналов
+volatile uint16_t max_value ; // максимальное пороговое значение каналов
+volatile uint32_t vmetr = 0;
+volatile static uint8_t cmumode = VUMETR; 
 volatile static uint16_t fade = 0; // счетчик для затухания
 volatile static uint16_t fadespeed = 30; // скорость затухания огней по умолчанию = fadeinitial * faderate
+volatile static uint16_t rainbow; // переменная текущего цвета Hue радуги
+volatile static uint8_t currentled = 0; // переменная для цму - текущий светодиод для обработки
+volatile static uint8_t rainbowspeed; // счетчик для регулировки скорости смены Hue цветов радуги
+volatile static uint8_t rainbowChannel; // счетчик для регулировки скорости смены Hue цветов радуги
+volatile uint8_t fourChannels = 0; //4 канала для 2 режима
+volatile uint16_t devider; // делитель
+volatile uint8_t v_peakspeed;
+volatile static uint8_t tempeffone = 0;
+uint8_t v_speed = 20;
+uint16_t shift_teak;
+uint16_t shift_speed= 100;
+volatile static uint8_t volfade = 0; // переменная для скорости затухания в режиме vu-meter
 
-extern float32_t testInput_f32_10khz[2048]; 
-
+void shift (void);
 __IO uint32_t SysTick_CNT = 0; //обьявляем и иницализируем в 0 значение нашего счетчика SysTick
 void delay_mS(uint32_t mS);
+void SetValueMode(uint8_t mode);
 static void DoFFT();
 
 
-  int main(void)
+   int main(void)
 {
   STM32_init_rcc();
   STM32_init_dma_timer();
@@ -59,12 +82,15 @@ static void DoFFT();
     
   for (uint8_t i=0;i<LEDS_NUM;i++){
     val_sin[i] =(((sin((2*PI*i)/((LEDS_NUM/2))))+1)*5)+53;
-    sat_sin[i] =(((sin((2*PI*i)/((LEDS_NUM/2))))+1)*20)+23;
+    sat_sin[i] =(((sin((2*PI*i)/((LEDS_NUM/3))))+1)*25)+13; 
   }
 
    LEDstrip_init();
    Convert_RGB_to_DMA_buf();
      uint16_t spectr;
+   SetValueMode(VUMETR);
+   arm_fft_window(4); // Создание окна Хеннинга
+   CF_HSV_TypeDef HSV;
      
    //DoFFT();
    
@@ -83,33 +109,34 @@ static void DoFFT();
     
       for (uint16_t n = 2; n < LENGTH_SAMPLES / 2; n++) {
               spectr = Spectr_fft_q31[n];
-              if (spectr <= 3000) spectr = 0;
+              if (spectr <= min_value) spectr = 0;
               switch (n)
                       {	
-                      case 2 ... 20: capture[0] += spectr;// низкие частоты
+                      case 5 ... 20: capture[0] += spectr;// низкие частоты
                       break;
-                      case 21 ... 41:capture[1] += spectr;
+                      case 21 ... 45:capture[1] += spectr;
                       break;
-                      case 42 ... 70: capture[2] += spectr;
+                      case 46 ... 75: capture[2] += spectr;
                       break;
-                      case 81 ... 150: capture[3] += spectr;
+                      case 76 ... 120: capture[3] += spectr;
                       break;
-                      case 151 ... 299: capture[4] += spectr;
+                      case 121 ... 170: capture[4] += spectr;
                       break;
-                      case 300 ... 339: capture[5] += spectr;
+                      case 181 ... 220: capture[5] += spectr;
                       break;
-                      case 400 ... 448: capture[6] += spectr;
+                      case 221 ... 270: capture[6] += spectr;
                       break;
-                      case 449 ... 512: capture[7] += spectr;	// высокие частоты
+                      case 271 ... 512: capture[7] += spectr;	// высокие частоты
                       break;
       
                       }
        }
-         
+       vmetr = 0; 
        for (uint8_t y = 0; y < CHANNELS; y++) {
-         capture[y] = capture[y] / 9375 ;
+         capture[y] = capture[y] / devider ;
          if (capture[y] >= 64) capture[y] = 64;
          if(capture[y] >= peak[y]) peak[y] = capture[y];        // установка нового пика и счетчика паузы затухания	
+         if (cmumode == 2) vmetr += capture[y];
        }
     
       //============================================================+
@@ -118,23 +145,54 @@ static void DoFFT();
               
       uint8_t currentled = 0;
    uint8_t currentledp = LEDPERCANEL;
-      
+      if (cmumode == 2)  {
+            vmetr = vmetr / 4;
+              if(vmetr > (LEDS_NUM)) vmetr = LEDS_NUM;
+      }
+      uint8_t hue = 150;
+      uint8_t sat = 255;
+        uint8_t vled =0;
+          HSV.S = HSV_SAT_MAX;
     for(uint8_t y = 0; y < CHANNELS; y++) { // для каждого канала
           for(uint8_t x = 0; x < currentledp; x++) { // для каждого светодиода
             
-            
-           uint8_t hue = 150;
-           uint8_t sat = 255;
-           
-           LEDS_buf[currentled] = HSV_to_RGB(hue, sat, BrightnessTable2[peak[y]]);
+            switch (cmumode) //режим работы цму
+            {
+            case 0: // постоянный цвет
+               
+               HSV.H = rainbow;
+               LEDS_buf[currentled] = HSV_to_RGB(HSV.H, HSV.S, BrightnessTable2[peak[y]]);
+              
+            break;
+              
+            case 2:     // VUMETR
+              volfade = 2;
+              if (vmetr > LEDS_NUM/4) volfade = 3;	
+              vled = currentled + ((LEDS_NUM)/2);
+              if (vled > LEDS_NUM) vled = (LEDS_NUM-1);
+                      if (currentled <= vmetr) {
+                              
+                              HSV.H = ABS((HSV_HUE_MAX - currentled*3)+rainbow);
+                              //HSV.H = rainbow;
+                              if (HSV.H > HSV_HUE_MAX) HSV.H -= HSV_HUE_MAX;
+                              HSV.V = 250;
+                              vpeak[currentled]=63;
+                         
+                              } 
+                            LEDS_buf[vled]=HSV_to_RGB(HSV.H, HSV.S, BrightnessTable2[vpeak[currentled] & sat_sin[LEDS_NUM - currentled]]);
+                            LEDS_buf[LEDS_NUM-vled-1]=HSV_to_RGB(HSV.H, HSV.S, BrightnessTable2[vpeak[currentled]& sat_sin[LEDS_NUM - currentled]]);
+                              //shift();
+              break;
+          }
            currentled++;
-          if (currentled > LEDS_NUM) currentled = 0;
+           if (currentled > LEDS_NUM) currentled = 0;
           }
          
     }
                 
      Convert_RGB_to_DMA_buf();                             
      ADC_flag_fft = 0; 
+       //shift();
     } else 
    {
      ADC_SoftwareStartConv(ADC1);
@@ -166,14 +224,6 @@ void DMA1_Stream7_IRQHandler(void){
   
 }
 
-#ifdef USE_FULL_ASSERT
-
-void assert_failed(u8* file, u32 line)
-{
-}
-#endif
-
-
 void SysTick_Handler(void)
 {
   if(SysTick_CNT > 0)  SysTick_CNT--;
@@ -181,28 +231,58 @@ void SysTick_Handler(void)
 
 void TIM3_IRQHandler(void) // Частота прерывания 1 мс
 {
+  if (shift_teak)
+    shift_teak--;
+  else{
+    shift();
+      shift_teak = shift_speed;
+  }
+  if (rainbowspeed) rainbowspeed--;
+	if (rainbowspeed == 0) {
+		rainbow++;
+                  if (rainbow > HSV_HUE_MAX) {
+                    rainbow = 0;
+                      
+                  }
+		rainbowspeed = rainbowChannel;	
+                  //shift();
+	}
+  
   if( fade >= fadespeed) { // счетчик циклов, при сробатывании обнуляется. чем он меньше, тем чаще будет происходить "затухание" при отсутствии нового "пика"
           for(uint8_t y = 0; y < CHANNELS; y++) if(peak[y]) peak[y]--;
           fade = 0;
   }
+    
+  // затухание для режима громкость
+  if ((cmumode == VUMETR)) {
+      for(uint8_t y = LEDS_NUM; y > 0; y--) {
+        if (vpeak[y] > 2) {
+          vpeak[y] -= 2;
+           break;
+        }
+        else continue;
+
+        //if (vpeak[y] >= volfade) vpeak[y]--; 
+        //else vpeak[y] = 0;
+      }
+  }
+  v_peakspeed=0;
   fade++; // счетчик для затухания
   TIM_ClearFlag(TIM3, TIM_FLAG_Update);
 }
 
 void DMA2_Stream0_IRQHandler(void)
 {
-   //uint32_t val;
-  //memcpy(ADC_arr, ADC_buf, sizeof(ADC_buf));
-         // 1. Подготовка входных данных
+  // Подготовка входных данных
   arm_q31_to_float(ADC_buf, ADC_arr, LENGTH_SAMPLES);
   for (uint16_t i = 0; i < LENGTH_SAMPLES; i++)
   {
-    ADC_fft[pos] = ADC_arr[i];
+    ADC_fft[pos] = ADC_arr[i]*fCoeff[i];        // Применение окна Хеннинга
     ADC_fft[pos+1] = 0;
     pos += 2;
   }
-    pos =0;
-  //memset (ADC_buf, 0, sizeof(ADC_buf));
+  pos =0;
+  //shift();
   ADC_flag_fft = 1;
   DMA_ClearITPendingBit(DMA2_Stream0, DMA_IT_TCIF0);  // Сброс флага прерывания
 
@@ -218,41 +298,52 @@ void delay_mS(uint32_t mS)
 
 static void DoFFT()
 {
-  uint16_t spectr;
   uint32_t ifftFlag = 0; 
   uint32_t doBitReverse = 1; 
-  uint32_t refIndex = 213, testIndex = 0; 
-    arm_status status; 
-      
-  //float32_t maxValue; 
-        
-      //arm_rfft_instance_f32 S; 
-      arm_cfft_radix4_instance_f32 S;
+  arm_cfft_radix4_instance_f32 S;
 
-    if (arm_cfft_radix4_init_f32(&S, LENGTH_SAMPLES,0, 1) == ARM_MATH_SUCCESS)
-    {
-      memset (Spectr_fft, 0, sizeof(Spectr_fft));
-      arm_cfft_radix4_f32(&S, ADC_fft);         // Вычисляем FFT
-        //arm_cfft_radix4_f32(&S, testInput_f32_10khz);
-          arm_cmplx_mag_f32(ADC_fft, Spectr_fft, LENGTH_SAMPLES);       // Преобразуем значение FFT в комлексный формат float32
-      //arm_cmplx_mag_f32(testInput_f32_10khz, Spectr_fft, LENGTH_SAMPLES);
-        arm_float_to_q31(Spectr_fft, Spectr_fft_q31, LENGTH_SAMPLES);
-            
-    }
-
-              
-      //memset (ADC_arr, 0, sizeof(ADC_arr));
-    //status = arm_cfft_radix4_init_f32(&S, fftSize,  ifftFlag, doBitReverse); 
-	 
-	/* Process the data through the CFFT/CIFFT module */ 
-	//arm_cfft_radix4_f32(&S, ADC_arr); 
-	 
-	// memset (ADC_fft, 0, sizeof(ADC_fft));
-	/* Process the data through the Complex Magnitude Module for  
-	calculating the magnitude at each bin */ 
-	//arm_cmplx_mag_f32(ADC_arr, ADC_fft, fftSize);    
-        
-         //memset (ADC_arr, 0, sizeof(ADC_arr));
-
+  if (arm_cfft_radix4_init_f32(&S, LENGTH_SAMPLES,ifftFlag, doBitReverse) == ARM_MATH_SUCCESS)
+  {
+    memset (Spectr_fft, 0, sizeof(Spectr_fft));
+    arm_cfft_radix4_f32(&S, ADC_fft);         // Вычисляем FFT
+    arm_cmplx_mag_f32(ADC_fft, Spectr_fft, LENGTH_SAMPLES);       // Преобразуем значение FFT в комлексный формат float32
+    arm_float_to_q31(Spectr_fft, Spectr_fft_q31, LENGTH_SAMPLES);     
+  }
 }
 
+void SetValueMode(uint8_t mode){
+	
+	if (mode == 0)
+	{
+		devider = 9370;
+		min_value = 2200;
+		fourChannels = 0;
+	}
+	if (mode == 1) {
+		devider = 150;
+		min_value = 2000;
+		fourChannels = 4;
+		rainbowChannel = 18;
+	}
+	if (mode == 2){
+		devider = 7000;
+		min_value = 2000;
+		fourChannels = 0;
+		rainbowChannel = 50;
+	}
+	
+}
+
+void shift (void) {
+		tempeffone = sat_sin[0];
+		for (uint8_t y = 0; y < (LEDS_NUM-1); y++)	{
+			sat_sin[y] = sat_sin[y + 1];
+		}
+		sat_sin[(LEDS_NUM-1)] = tempeffone;
+}
+#ifdef USE_FULL_ASSERT
+
+void assert_failed(u8* file, u32 line)
+{
+}
+#endif

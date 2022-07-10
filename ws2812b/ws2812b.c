@@ -10,18 +10,6 @@ void Delay_ms(uint32_t n)
   }
 }
 
-void shift (void) {
-		tempeffone = val_sin[0];
-		for (uint8_t y = 0; y < (LEDS_NUM-1); y++)	{
-			val_sin[y] = val_sin[y + 1];
-		}
-		val_sin[(LEDS_NUM-1)] = tempeffone;
-}
-
-
-
-
-
 // Sloppy delay function (not accurate)
 void Delay(__IO uint32_t nCount) { while(nCount--) { } }
 

@@ -30,15 +30,15 @@
         <MultiCoreRunAll>1</MultiCoreRunAll>
     </Simulator>
     <StLinkDriver>
-        <stlinkserialNo>A</stlinkserialNo>
-        <stlinkfoundProbes />
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
         <CStepIntDis>_ 0</CStepIntDis>
         <stlinkResetStyle>0</stlinkResetStyle>
         <stlinkResetStrategy>2</stlinkResetStrategy>
+        <stlinkserialNo>A</stlinkserialNo>
+        <stlinkfoundProbes />
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>2069690701</Checksum>
+        <Checksum>3915590848</Checksum>
     </DebugChecksum>
     <CodeCoverage>
         <Enabled>_ 0</Enabled>
@@ -81,15 +81,12 @@
         <mode>0</mode>
     </Disassemble_mode>
     <PlDriver>
-        <FirstRun>0</FirstRun>
         <MemConfigValue>C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CONFIG\debugger\ST\STM32F401CC.ddf</MemConfigValue>
+        <FirstRun>0</FirstRun>
     </PlDriver>
     <ArmDriver>
         <EnableCache>0</EnableCache>
     </ArmDriver>
-    <Registers>
-        <regBase0>ADC1_DR 10</regBase0>
-    </Registers>
     <InterruptStripe>
         <Sort>1</Sort>
     </InterruptStripe>
@@ -101,6 +98,9 @@
         <Title2>arm_float_to_q31</Title2>
         <Setup2>0 2 0 0 1 0 0 -2147483648 2147483647</Setup2>
     </DataStripe>
+    <Registers>
+        <regBase0>ADC1_DR 10</regBase0>
+    </Registers>
     <array_types>
         <Fmt0>float32_t[1024]	4	0</Fmt0>
         <Fmt1>float32_t[2048]	4	0</Fmt1>
@@ -178,12 +178,10 @@
         <Bp5>_ 0 "EMUL_DATA_LOG" "if" 0 0</Bp5>
         <Bp6>_ 1 "EMUL_DATA_LOG" "TIM3_IRQHandler" 0 0</Bp6>
         <Bp7>_ 1 "EMUL_DATA" "TIM3_IRQHandler" 0 0 0 0 4294967295</Bp7>
-        <Count>8</Count>
+        <Bp8>_ 1 "EMUL_CODE" "{$PROJ_DIR$\main.c}.283.5" 0 0 1 "" 0 "" 0</Bp8>
+        <Bp9>_ 1 "EMUL_CODE" "{$PROJ_DIR$\main.c}.278.5" 0 0 1 "" 0 "" 0</Bp9>
+        <Count>10</Count>
     </Breakpoints2>
-    <TermIOLog>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-    </TermIOLog>
     <LogFile>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
@@ -207,4 +205,8 @@
     <CallStackStripe>
         <ShowTiming>0</ShowTiming>
     </CallStackStripe>
+    <TermIOLog>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+    </TermIOLog>
 </settings>

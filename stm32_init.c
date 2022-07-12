@@ -42,11 +42,11 @@ void STM32_init_rcc(){
 void STM32_init_gpio(){
 
  GPIO_InitTypeDef gp;
-  gp.GPIO_Pin = GPIO_Pin_13;
-  gp.GPIO_Mode = GPIO_Mode_OUT;
+  gp.GPIO_Pin = GPIO_Pin_14;
+  gp.GPIO_Mode = GPIO_Mode_IN;
   gp.GPIO_Speed = GPIO_Speed_100MHz;
-  gp.GPIO_OType = GPIO_OType_OD;
-  gp.GPIO_PuPd = GPIO_PuPd_DOWN;
+  //gp.GPIO_OType = GPIO_OType_OD;
+  gp.GPIO_PuPd = GPIO_PuPd_NOPULL;
   GPIO_Init(GPIOC,&gp);
     
  

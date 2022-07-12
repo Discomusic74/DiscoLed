@@ -40,7 +40,7 @@ volatile uint16_t max_value ; // максимальное пороговое з�
 volatile uint32_t vmetr = 0;
 volatile static uint8_t cmumode = VUMETR; 
 volatile static uint16_t fade = 0; // счетчик для затухания
-volatile static uint16_t fadespeed = 30; // скорость затухания огней по умолчанию = fadeinitial * faderate
+volatile static uint16_t fadespeed = 10; // скорость затухания огней по умолчанию = fadeinitial * faderate
 volatile static uint16_t rainbow; // переменная текущего цвета Hue радуги
 volatile static uint8_t currentled = 0; // переменная для цму - текущий светодиод для обработки
 volatile static uint8_t rainbowspeed; // счетчик для регулировки скорости смены Hue цветов радуги
@@ -48,6 +48,9 @@ volatile static uint8_t rainbowChannel; // счетчик для регулир�
 volatile uint8_t fourChannels = 0; //4 канала для 2 режима
 volatile uint16_t devider; // делитель
 volatile uint8_t v_peakspeed;
+volatile uint8_t bOldButton = 0;
+volatile uint8_t bButton = 0;
+volatile uint8_t changeMode = 1;
 volatile static uint8_t tempeffone = 0;
 uint8_t v_speed = 20;
 uint16_t shift_teak;
@@ -88,7 +91,6 @@ static void DoFFT();
    LEDstrip_init();
    Convert_RGB_to_DMA_buf();
      uint16_t spectr;
-   SetValueMode(VUMETR);
    arm_fft_window(4); // Создание окна Хеннинга
    CF_HSV_TypeDef HSV;
      
@@ -96,6 +98,11 @@ static void DoFFT();
    
    while (1)
   {
+    if (changeMode) 
+       {
+         SetValueMode(cmumode);
+         changeMode = 0;
+       }
     if (ADC_flag_fft)
    {
      DoFFT();
@@ -110,29 +117,46 @@ static void DoFFT();
       for (uint16_t n = 2; n < LENGTH_SAMPLES / 2; n++) {
               spectr = Spectr_fft_q31[n];
               if (spectr <= min_value) spectr = 0;
-              switch (n)
+              if (cmumode == COLORMUSIC)
+              {
+                switch (n)
                       {	
-                      case 5 ... 20: capture[0] += spectr;// низкие частоты
+                      case 5 ... 20: capture[0] += spectr/4;// низкие частоты
                       break;
-                      case 21 ... 45:capture[1] += spectr;
+                      case 21 ... 49: capture[1] += spectr;
                       break;
-                      case 46 ... 75: capture[2] += spectr;
+                      case 50 ... 199: capture[2] += spectr;
                       break;
-                      case 76 ... 120: capture[3] += spectr;
+                      case 200 ... 512: capture[3] += spectr;
                       break;
-                      case 121 ... 170: capture[4] += spectr;
+                      }
+              }
+              else 
+              {
+                 switch (n)
+                      {	
+                      case 5 ... 20: capture[0] += spectr/4;// низкие частоты
                       break;
-                      case 181 ... 220: capture[5] += spectr;
+                      case 21 ... 30:capture[1] += spectr;
                       break;
-                      case 221 ... 270: capture[6] += spectr;
+                      case 31 ... 60: capture[2] += spectr;
+                      break;
+                      case 61 ... 100: capture[3] += spectr;
+                      break;
+                      case 101 ... 149: capture[4] += spectr;
+                      break;
+                      case 150 ... 179: capture[5] += spectr;
+                      break;
+                      case 180 ... 270: capture[6] += spectr;
                       break;
                       case 271 ... 512: capture[7] += spectr;	// высокие частоты
                       break;
       
                       }
+              }
        }
        vmetr = 0; 
-       for (uint8_t y = 0; y < CHANNELS; y++) {
+       for (uint8_t y = 0; y < CHANNELS - fourChannels; y++) {
          capture[y] = capture[y] / devider ;
          if (capture[y] >= 64) capture[y] = 64;
          if(capture[y] >= peak[y]) peak[y] = capture[y];        // установка нового пика и счетчика паузы затухания	
@@ -144,7 +168,7 @@ static void DoFFT();
       //============================================================+		
               
       uint8_t currentled = 0;
-   uint8_t currentledp = LEDPERCANEL;
+      uint8_t direction = 0;
       if (cmumode == 2)  {
             vmetr = vmetr / 4;
               if(vmetr > (LEDS_NUM)) vmetr = LEDS_NUM;
@@ -153,15 +177,33 @@ static void DoFFT();
       uint8_t sat = 255;
         uint8_t vled =0;
           HSV.S = HSV_SAT_MAX;
-    for(uint8_t y = 0; y < CHANNELS; y++) { // для каждого канала
-          for(uint8_t x = 0; x < currentledp; x++) { // для каждого светодиода
+    for(uint8_t y = 0; y < CHANNELS-fourChannels; y++) { // для каждого канала
+          for(uint8_t x = 0; x < LEDPERCANEL; x++) { // для каждого светодиода
             
             switch (cmumode) //режим работы цму
             {
-            case 0: // постоянный цвет
+            case 0: // SOUNDSPECTR
                
                HSV.H = rainbow;
                LEDS_buf[currentled] = HSV_to_RGB(HSV.H, HSV.S, BrightnessTable2[peak[y]]);
+              
+            break;
+              
+            case 1: // COLORMUSIC
+               
+               HSV.H = y*64;
+               //if (direction == 1) {
+                if (y==3) HSV.H = 213;
+                vled = currentled;
+                LEDS_buf[vled] = HSV_to_RGB(HSV.H, HSV.S, BrightnessTable2[peak[y]]);
+                //direction = 0;
+                
+                if (y==3) HSV.H = 160;
+                vled = LEDS_NUM - (currentled + 1);
+                  LEDS_buf[vled] = HSV_to_RGB(HSV.H, HSV.S, BrightnessTable2[peak[y]]);
+                //direction = 1;
+                //}
+               //LEDS_buf[vled] = HSV_to_RGB(HSV.H, HSV.S, BrightnessTable2[peak[y]]);
               
             break;
               
@@ -231,6 +273,19 @@ void SysTick_Handler(void)
 
 void TIM3_IRQHandler(void) // Частота прерывания 1 мс
 {
+  if (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_14) == 0)
+  {
+    bOldButton = 1;
+    bButton = 1;
+  } else bButton = 0;
+  if ((bOldButton != 0) && (bButton == 0)) 
+  {
+    changeMode = 1;
+    cmumode++;
+    if (cmumode > 2) cmumode = 0;
+    bOldButton = 0;	
+  }
+   
   if (shift_teak)
     shift_teak--;
   else{
@@ -249,7 +304,7 @@ void TIM3_IRQHandler(void) // Частота прерывания 1 мс
 	}
   
   if( fade >= fadespeed) { // счетчик циклов, при сробатывании обнуляется. чем он меньше, тем чаще будет происходить "затухание" при отсутствии нового "пика"
-          for(uint8_t y = 0; y < CHANNELS; y++) if(peak[y]) peak[y]--;
+          for(uint8_t y = 0; y < CHANNELS; y++) if(peak[y]>=2) peak[y] -= 2;
           fade = 0;
   }
     
@@ -313,20 +368,21 @@ static void DoFFT()
 
 void SetValueMode(uint8_t mode){
 	
-	if (mode == 0)
+	if (mode == SOUNDSPECTR)
 	{
 		devider = 9370;
-		min_value = 2200;
+		min_value = 3000;
 		fourChannels = 0;
+                rainbowChannel = 50;
 	}
-	if (mode == 1) {
-		devider = 150;
-		min_value = 2000;
+	if (mode == COLORMUSIC) {
+		devider = 8500;
+		min_value = 3000;
 		fourChannels = 4;
 		rainbowChannel = 18;
 	}
-	if (mode == 2){
-		devider = 7000;
+	if (mode == VUMETR){
+		devider = 6000;
 		min_value = 2000;
 		fourChannels = 0;
 		rainbowChannel = 50;
